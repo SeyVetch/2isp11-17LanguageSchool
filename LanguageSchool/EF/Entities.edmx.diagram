@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="20ab121d76e34c2ea323a0e400477036" Name="Diagram1">
+        <EntityTypeShape EntityType="LanguageSchoolModel.Client" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.Gender" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.PhotoService" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.Service" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.ServiceCategory" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.ServiceHistory" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.ServiceHistoryAttachment" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.Specialist" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.Tag" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LanguageSchoolModel.vw_ClientsTags" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_ServiceHistory_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_Specialist_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_PhotoService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_Service_ServiceCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_ServiceHistory_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.FK_ServiceHistoryAttachment_ServiceHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.ServiceSpecialist" ManuallyRouted="false" />
+        <AssociationConnector Association="LanguageSchoolModel.TagClient" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
