@@ -50,6 +50,11 @@ namespace LanguageSchool.Windows
         {
             InitializeComponent();
 
+            foreach (EF.Client C in AppData.Context.Client.ToList())
+            {
+                C.IsHidden = false;
+            }
+            AppData.Context.SaveChanges();
             clients = AppData.Context.Client.ToList();
             cmbGender.ItemsSource = GendersList.Genders();
             sortBy = SortConditions.sortByID;
@@ -74,9 +79,20 @@ namespace LanguageSchool.Windows
         private void ApplyFilter()
         {
             List<EF.Client> filtered = AppData.Context.Client.ToList();
+            foreach (EF.Client c in AppData.Context.Client.ToList())
+            {
+                if (c.IsHidden)
+                {
+                    filtered.Remove(c);
+                }
+            }
             if (genderID != -1)
             {
                 filtered = filtered.Where(i => i.IdGender == genderID).ToList();
+            }
+            if ((bool)checkBirthDay.IsChecked)
+            {
+                filtered = filtered.Where(i => i.BirthDate.Month == DateTime.Today.Month).ToList();
             }
             clients = filtered;
             ApplySearch();
@@ -207,7 +223,48 @@ namespace LanguageSchool.Windows
             tbFIO.Text = "";
             tbMail.Text = "";
             tbPhone.Text = "";
+            checkBirthDay.IsChecked = false;
             ApplyFilter();
+        }
+
+        private void lvClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvClient.SelectedIndex != -1)
+            {
+                MessageBoxResult res = MessageBox.Show("Удалить пользователя?", "Delete user", MessageBoxButton.OKCancel);
+                if (res == MessageBoxResult.OK)
+                {
+                    EF.Client c = AppData.Context.Client.FirstOrDefault(i => i.IdClient == ((EF.Client)lvClient.SelectedItem).IdClient);
+                    if(c.TotalVisits > 0)
+                    {
+                        MessageBox.Show("Нельзя было удалить пользоваетля");
+                    }
+                    else
+                    {
+                        AppData.Context.Client.FirstOrDefault(i => i.IdClient == ((EF.Client)lvClient.SelectedItem).IdClient).IsHidden = true;
+                        AppData.Context.SaveChanges();
+                        ApplyFilter();
+                    }
+                }
+            }
+        }
+
+        private void checkBirthDay_Checked(object sender, RoutedEventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void lvClient_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lvClient.SelectedIndex != -1)
+            {
+                VisitsWindow vw = new VisitsWindow((EF.Client)lvClient.SelectedItem);
+                vw.Show();
+            }
         }
     }
 }

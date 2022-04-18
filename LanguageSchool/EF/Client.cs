@@ -21,7 +21,7 @@ namespace LanguageSchool.EF
             this.ServiceHistory = new HashSet<ServiceHistory>();
             this.Tag = new HashSet<Tag>();
         }
-    
+        public bool IsHidden = false;
         public int IdClient { get; set; }
         public string LName { get; set; }
         public string FName { get; set; }
@@ -37,7 +37,7 @@ namespace LanguageSchool.EF
             get
             {
                 return RegistrationDate.Date.ToString().Split()[0];
-            }       
+            }
         }
         public virtual string Fio
         {
@@ -73,7 +73,6 @@ namespace LanguageSchool.EF
                 return ClassHelper.AppData.Context.vw_ClientsTags.Where(i => i.Client == IdClient).ToList();
             }
         }
-
 
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

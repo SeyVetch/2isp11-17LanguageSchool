@@ -129,6 +129,19 @@
             <StackPanel HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Orientation="Horizontal"
+                        Grid.Row="6"
+                        Grid.Column="1">
+                <TextBlock Text="День рождения в этом месяце"
+                           VerticalAlignment="Center"
+                           FontFamily="Comic Sans MS"
+                           Margin="0, 0, 7, 0"
+                           FontSize="12"/>
+                <CheckBox x:Name="checkBirthDay" Checked="checkBirthDay_Checked"
+                          Unchecked="checkBirthDay_Checked"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
                         Grid.Row="4"
                         Grid.Column="2">
                 <TextBlock Text="Сортировка по:"
@@ -157,8 +170,8 @@
                   BorderThickness="2"
                   Grid.Row="1"
                   Grid.Column="1"
-                  Background="#e7fabf"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                  Background="#e7fabf" MouseDoubleClick="lvClient_MouseDoubleClick"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="lvClient_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel/>
@@ -313,6 +326,22 @@
                     ⩥
                 </Hyperlink>
             </TextBlock>
-        </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.03*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Delete user" 
+                        FontFamily="Comic Sans MS"
+                        Grid.Column="1"
+                        Grid.Row="1" Click="Button_Click"/>
+            </Grid>
+         </Grid>
     </Grid>
 </Window>

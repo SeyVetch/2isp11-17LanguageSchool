@@ -11,6 +11,8 @@ namespace LanguageSchool.EF
 {
     using System;
     using System.Collections.Generic;
+    using LanguageSchool.ClassHelper;
+    using System.Linq;
     
     public partial class ServiceHistory
     {
@@ -27,7 +29,29 @@ namespace LanguageSchool.EF
         public System.DateTime StartTime { get; set; }
         public string Comment { get; set; }
         public bool IsCanceled { get; set; }
-    
+        
+        public string GetServiceName
+        {
+            get
+            {
+                return AppData.Context.Service.Find(IdService).ServiceName;
+            }
+        }
+        public string GetTime
+        {
+            get
+            {
+                return StartTime.ToString();
+            }
+        }
+        public int GetFilesCount
+        {
+            get
+            {
+                return AppData.Context.ServiceHistoryAttachment.Where(i => i.IdServiceHistory == IdServiceHistory).Count();
+            }
+        }
+
         public virtual Client Client { get; set; }
         public virtual Service Service { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

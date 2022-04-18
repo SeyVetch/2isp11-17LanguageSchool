@@ -18,6 +18,10 @@ namespace LanguageSchool.ClassHelper
         {
             DateTime visit1 = c1.LastVisit == "" ? DateTime.MinValue : DateTime.Parse(c1.LastVisit);
             DateTime visit2 = c2.LastVisit == "" ? DateTime.MinValue : DateTime.Parse(c2.LastVisit);
+            if (visit1 == visit2)
+            {
+                return sortByID(c1, c2);
+            }
             return visit2.CompareTo(visit1);
         }
         public static int sortByTotalVisits(EF.Client c1, EF.Client c2)
@@ -26,6 +30,10 @@ namespace LanguageSchool.ClassHelper
             int? visits2 = c2.TotalVisits;
             int v1 = visits1 == null ? 0 : (int)visits1;
             int v2 = visits2 == null ? 0 : (int)visits2;
+            if (visits1 == visits2)
+            {
+                return sortByID(c1, c2);
+            }
             return v2.CompareTo(v1);
         }
         public static int sortByID(EF.Client c1, EF.Client c2)

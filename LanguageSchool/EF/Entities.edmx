@@ -128,6 +128,16 @@
           <Property Name="IdTag" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "LanguageSchool.dbo.vw_ClientDetails" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="vw_ClientDetails">
+          <Property Name="Name" Type="nvarchar" MaxLength="302" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Age" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Number of tags" Type="int" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="30" />
+          <Property Name="LastVisit" Type="datetime" />
+        </EntityType>-->
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "LanguageSchool.dbo.vw_ClientsTags" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="vw_ClientsTags">
           <Key>
@@ -248,7 +258,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TagClient_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TagClient" Type="Self.TagClient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
